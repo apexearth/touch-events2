@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>touch-events2 - User Test</title>
+    <script src="../build/module.js"></script>
+</head>
+<body style="background-color: #222">
+<pre id="output" style="position: fixed;
+                        margin: 0;
+                        left: 0; top: 0;
+                        width: 100%; height: 100%;
+                        background-color: #444;
+                        color: #ccc; font-size: 32pt;
+                        text-align: left">
+    Touch!
+</pre>
+
+<script type="text/javascript">
+    var touch = window.touchevents(document) // Default target is `document.body`
+    touch.on("touchstart", function (e) {
+        var list = []
+        for (var i = 0; i < e.touches.length; i++) {
+            list.push({
+                pageX: e.touches[i].pageX,
+                pageY: e.touches[i].pageY
+            });
+        }
+        document.getElementById("output").innerText = JSON.stringify(list, null, 4);
+    })
+</script>
+
+</body>
+</html>
